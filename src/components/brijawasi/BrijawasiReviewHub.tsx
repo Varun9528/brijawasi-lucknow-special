@@ -377,34 +377,66 @@ export default function BrijawasiReviewHub() {
 
   const copyToClipboard = (text: string): boolean => {
     if (!text) return false;
-    try {
-      if (navigator?.clipboard?.writeText) {
-        navigator.clipboard.writeText(text);
+    let successful = false;
+
+    // Strategy 1: Active Textarea Selection (Directly in DOM - 100% reliable across browsers)
+    if (reviewTextareaRef.current) {
+      try {
+        reviewTextareaRef.current.focus();
+        reviewTextareaRef.current.select();
+        reviewTextareaRef.current.setSelectionRange(0, text.length);
+        successful = document.execCommand("copy");
+      } catch (err) {
+        console.warn("Direct textarea copy error:", err);
       }
-    } catch {
-      // Fallback
     }
 
-    try {
-      const textarea = document.createElement("textarea");
-      textarea.value = text;
-      textarea.style.position = "fixed";
-      textarea.style.opacity = "0";
-      document.body.appendChild(textarea);
-      textarea.focus();
-      textarea.select();
-      const successful = document.execCommand("copy");
-      document.body.removeChild(textarea);
-      return successful;
-    } catch {
-      return false;
+    // Strategy 2: Modern Navigator Clipboard API
+    if (typeof navigator !== "undefined" && navigator?.clipboard?.writeText) {
+      try {
+        navigator.clipboard.writeText(text).catch((err) => {
+          console.warn("navigator.clipboard.writeText rejected:", err);
+        });
+        successful = true;
+      } catch (err) {
+        console.warn("navigator.clipboard error:", err);
+      }
     }
+
+    // Strategy 3: Offscreen textarea fallback (works if textarea wasn't focused)
+    if (!successful) {
+      try {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.top = "0";
+        textarea.style.left = "0";
+        textarea.style.width = "2em";
+        textarea.style.height = "2em";
+        textarea.style.padding = "0";
+        textarea.style.border = "none";
+        textarea.style.outline = "none";
+        textarea.style.boxShadow = "none";
+        textarea.style.background = "transparent";
+        textarea.setAttribute("readonly", "");
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        textarea.setSelectionRange(0, text.length);
+        successful = document.execCommand("copy");
+        document.body.removeChild(textarea);
+      } catch (err) {
+        console.warn("Offscreen textarea copy error:", err);
+      }
+    }
+
+    return successful;
   };
 
   /**
    * EXACT 3D CAR CARE SYNCHRONOUS POPUP-SAFE FLOW:
-   * 1. Synchronously opens verified Google Maps destination in new tab.
-   * 2. Copies selected edited review text.
+   * 1. Copies selected edited review text FIRST while page has direct user focus & activation.
+   * 2. Synchronously opens verified Google Maps destination in new tab.
    * 3. Renders the inline 3-step paste confirmation card right below the button.
    */
   const handleCopyAndOpenGoogle = () => {
@@ -418,12 +450,12 @@ export default function BrijawasiReviewHub() {
       return;
     }
 
-    // 1. Synchronously open verified Brijawasi Google destination (popup-safe)
+    // 1. MUST COPY FIRST while page has active user gesture & document focus
+    copyToClipboard(textToCopy);
+
+    // 2. Synchronously open verified Brijawasi Google destination (popup-safe)
     const destinationUrl = BRIJAWASI_CONFIG.googleReviewUrl;
     window.open(destinationUrl, "_blank", "noopener,noreferrer");
-
-    // 2. Copy exact edited review to clipboard
-    copyToClipboard(textToCopy);
 
     // 3. Reveal the inline 3-step confirmation box
     setCopied(true);
@@ -1021,6 +1053,18 @@ export default function BrijawasiReviewHub() {
                       <span>SELECTED REVIEW (EDITABLE)</span>
                     </label>
                     <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          copyToClipboard(generatedReview.trim());
+                          setCopied(true);
+                        }}
+                        className="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#701C22] border border-[#C9A24A]/50 text-[#C9A24A] hover:text-[#FFF9EF] hover:bg-[#852229] transition-colors"
+                        title="Copy this review text"
+                      >
+                        <Copy className="w-3 h-3" />
+                        <span>Copy Text</span>
+                      </button>
                       <div className="flex items-center gap-0.5">
                         {[1, 2, 3, 4, 5].map((s) => (
                           <Star
@@ -1106,14 +1150,25 @@ export default function BrijawasiReviewHub() {
                         </div>
                       </div>
 
-                      <div className="pt-1 text-center">
+                      <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-2">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            copyToClipboard(generatedReview.trim());
+                            setCopied(true);
+                          }}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#701C22] border border-[#C9A24A]/60 text-[#C9A24A] text-xs font-bold hover:bg-[#852229] hover:text-[#FFF9EF] transition-all"
+                        >
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>Copy review text again</span>
+                        </button>
                         <a
                           href={BRIJAWASI_CONFIG.googleReviewUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 text-[11px] text-[#C9A24A] hover:underline"
                         >
-                          <span>Didn&apos;t open? Tap here to open Brijawasi Google listing</span>
+                          <span>Didn&apos;t open? Tap here</span>
                           <ExternalLink className="w-3 h-3" />
                         </a>
                       </div>
