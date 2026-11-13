@@ -138,12 +138,13 @@ export const BRIJAWASI_CONFIG = {
   permanentSlug: "/",
   alternateSlugs: ["/brijawasi", "/brijawasi-lucknow-special"],
   logoUrl: "/brijwasi-logo.jpg",
-  // Official verified Brijawasi Google destination (resolves to Chandra Nagar, Indore listing)
+  // Official verified Brijawasi Google Review Composer destination (opens direct 5-star rating composer)
   googleReviewUrl:
     process.env.NEXT_PUBLIC_BRIJAWASI_GOOGLE_REVIEW_URL?.trim() ||
     process.env.NEXT_PUBLIC_GOOGLE_REVIEW_URL?.trim() ||
-    "https://maps.app.goo.gl/VYXw86Ni7tEKEzxj8",
+    "https://search.google.com/local/writereview?placeid=ChIJEbF7jDb9YjkRfIojaE0GYYc",
   googleMapsUrl: "https://maps.app.goo.gl/VYXw86Ni7tEKEzxj8",
+  googlePlaceId: "ChIJEbF7jDb9YjkRfIojaE0GYYc",
   // Brand color palette: Royal Maroon, Deep Burgundy, Antique Gold, Warm Cream, Ivory, Dark Brown
   brandColors: {
     royalMaroon: "#701C22",
