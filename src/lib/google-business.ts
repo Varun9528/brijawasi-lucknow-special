@@ -369,7 +369,7 @@ export async function processAndReplyToReviews(
     try {
       const generatedReply = await generateRestaurantOwnerReply(
         { reviewerName, starRating, comment },
-        "Brijawasi Lucknow Special"
+        "Brajwasi Lucknow Special"
       );
 
       await replyToGoogleReview(

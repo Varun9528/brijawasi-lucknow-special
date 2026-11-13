@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
       : [];
 
     const restaurantInput: RestaurantReviewInput = {
-      businessName: body.businessName || "Brijawasi Lucknow Special",
+      businessName: body.businessName || "Brajwasi Lucknow Special",
       dishes,
       services,
       experiences,

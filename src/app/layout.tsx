@@ -5,28 +5,29 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL || "https://brijawasi-lucknow-special.vercel.app"
   ),
-  title: "Brijawasi Lucknow Special | Royal Taste & Hospitality",
+  title: "Brajwasi Lucknow Special | Royal Taste & Hospitality",
   description:
-    "Official customer review and feedback system for Brijawasi Lucknow Special. Authentic Veg Kabab Paratha, Veg Biryani, Rolls, and Royal Lucknowi Hospitality.",
-  applicationName: "Brijawasi Review Hub",
+    "Official customer review and feedback system for Brajwasi Lucknow Special. Authentic Veg Kabab Paratha, Veg Biryani, Rolls, and Royal Lucknowi Hospitality.",
+  applicationName: "Brajwasi Review Hub",
   keywords: [
-    "Brijawasi Lucknow Special",
+    "Brajwasi Lucknow Special",
+    "Brajwasi Indore",
     "Veg Kabab Paratha",
     "Veg Biryani",
     "Veg Kabab Roll",
     "Paneer Masala Roll",
     "Lucknow Food",
-    "Brijawasi Google Review",
+    "Brajwasi Google Review",
   ],
-  authors: [{ name: "Brijawasi Lucknow Special" }],
+  authors: [{ name: "Brajwasi Lucknow Special" }],
   icons: {
     icon: "/brijwasi-logo.jpg",
   },
   openGraph: {
-    title: "Brijawasi Lucknow Special - Customer Review & Experience",
+    title: "Brajwasi Lucknow Special - Customer Review & Experience",
     description:
       "Tell us about your authentic dining experience and share your review on Google.",
-    siteName: "Brijawasi Lucknow Special",
+    siteName: "Brajwasi Lucknow Special",
     locale: "en_IN",
     type: "website",
     images: ["/brijwasi-logo.jpg"],

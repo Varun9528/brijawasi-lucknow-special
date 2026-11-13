@@ -51,7 +51,7 @@ export async function generateRestaurantReviewSuggestions(
   source: "openai" | "template";
 }> {
   const openai = getOpenAIClient();
-  const businessName = input.businessName || "Brijawasi Lucknow Special";
+  const businessName = input.businessName || "Brajwasi Lucknow Special";
   const trimmedFeedback = (input.feedback || "").trim();
 
   const selectedDishes =
@@ -223,7 +223,7 @@ Return ONLY a valid JSON object matching this schema:
 export function generateRestaurantFallbackSuggestions(
   input: RestaurantReviewInput
 ): ReviewSuggestion[] {
-  const businessName = input.businessName || "Brijawasi Lucknow Special";
+  const businessName = input.businessName || "Brajwasi Lucknow Special";
   const dishes =
     input.dishes && input.dishes.length > 0
       ? input.dishes
@@ -476,7 +476,7 @@ export const generateCustomerReview = async (input: RestaurantReviewInput) => {
 };
 
 /**
- * Generate an official restaurant owner reply for Brijawasi Lucknow Special
+ * Generate an official restaurant owner reply for Brajwasi Lucknow Special
  */
 export async function generateRestaurantOwnerReply(
   review: {
@@ -484,7 +484,7 @@ export async function generateRestaurantOwnerReply(
     starRating: number;
     comment?: string;
   },
-  restaurantName = "Brijawasi Lucknow Special"
+  restaurantName = "Brajwasi Lucknow Special"
 ): Promise<string> {
   const openai = getOpenAIClient();
 
@@ -562,7 +562,7 @@ function generateFallbackRestaurantOwnerReply(
     starRating: number;
     comment?: string;
   },
-  restaurantName = "Brijawasi Lucknow Special"
+  restaurantName = "Brajwasi Lucknow Special"
 ): string {
   const name = review.reviewerName ? review.reviewerName.split(" ")[0] : "Guest";
   const comment = (review.comment || "").toLowerCase();

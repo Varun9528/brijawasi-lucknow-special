@@ -2,17 +2,17 @@ import type { Metadata, Viewport } from "next";
 import BrijawasiReviewHub from "@/components/brijawasi/BrijawasiReviewHub";
 
 export const metadata: Metadata = {
-  title: "Brijawasi Lucknow Special | Share Your Dining Experience",
+  title: "Brajwasi Lucknow Special | Share Your Dining Experience",
   description:
-    "Official customer review and feedback system for Brijawasi Lucknow Special. Authentic Veg Kabab Paratha, Veg Biryani, and Royal Lucknowi Hospitality.",
-  applicationName: "Brijawasi Review Hub",
+    "Official customer review and feedback system for Brajwasi Lucknow Special. Authentic Veg Kabab Paratha, Veg Biryani, and Royal Lucknowi Hospitality.",
+  applicationName: "Brajwasi Review Hub",
   keywords: [
-    "Brijawasi Lucknow Special",
+    "Brajwasi Lucknow Special",
     "Veg Kabab Paratha",
     "Veg Biryani",
-    "Brijawasi Google Review",
+    "Brajwasi Google Review",
   ],
-  authors: [{ name: "Brijawasi Lucknow Special" }],
+  authors: [{ name: "Brajwasi Lucknow Special" }],
   icons: {
     icon: "/brijwasi-logo.jpg",
   },
@@ -28,7 +28,7 @@ export const viewport: Viewport = {
 export default function BrijawasiLucknowSpecialPage() {
   return (
     <main className="min-h-screen w-full flex flex-col justify-start items-center bg-[#3B1118]">
-      <BrijawasiReviewHub />
+      <BrijawasiReviewHub initialView="review" />
     </main>
   );
 }

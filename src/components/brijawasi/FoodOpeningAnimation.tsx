@@ -11,7 +11,7 @@ interface FoodOpeningAnimationProps {
 
 export default function FoodOpeningAnimation({
   onComplete,
-  restaurantName = "Brijawasi Lucknow Special",
+  restaurantName = "Brajwasi Lucknow Special",
 }: FoodOpeningAnimationProps) {
   const [phase, setPhase] = useState<number>(0);
   const [isFadingOut, setIsFadingOut] = useState<boolean>(false);
@@ -46,7 +46,7 @@ export default function FoodOpeningAnimation({
   return (
     <div
       role="dialog"
-      aria-label="Welcome to Brijawasi Lucknow Special"
+      aria-label="Welcome to Brajwasi Lucknow Special"
       onClick={handleSkip}
       className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#3B1118] text-[#FFF9EF] px-4 select-none transition-opacity duration-300 cursor-pointer ${
         isFadingOut ? "opacity-0 pointer-events-none" : "opacity-100"
@@ -179,7 +179,7 @@ export default function FoodOpeningAnimation({
             <div className="w-full h-full rounded-full overflow-hidden bg-[#FFF9EF] relative border-2 border-[#701C22]">
               <Image
                 src="/brijwasi-logo.jpg"
-                alt="Brijawasi Lucknow Special"
+                alt="Brajwasi Lucknow Special"
                 fill
                 priority
                 sizes="112px"

@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
 
   try {
     const tokens = await exchangeGoogleCode(code, origin, businessId);
-    const clientName = "Brijawasi Lucknow Special";
+    const clientName = "Brajwasi Lucknow Special";
     const returnUrl = "/";
     const details = `
       <p style="margin-bottom: 8px;">✅ <strong>Business:</strong> ${clientName}</p>
@@ -53,7 +53,7 @@ function renderHtmlPage(title: string, content: string, success: boolean, busine
   const goldColor = "#D4AF37";
   const bgDark = "#123D2B";
   const cardBg = "#174A32";
-  const btnLabel = "Return to Brijawasi Hub";
+  const btnLabel = "Return to Brajwasi Hub";
 
   return `
 <!DOCTYPE html>
@@ -61,7 +61,7 @@ function renderHtmlPage(title: string, content: string, success: boolean, busine
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title} | Brijawasi Lucknow Special</title>
+  <title>${title} | Brajwasi Lucknow Special</title>
   <style>
     body {
       margin: 0;

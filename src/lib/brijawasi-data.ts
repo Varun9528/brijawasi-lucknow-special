@@ -130,26 +130,29 @@ export function isOfficialGoogleReviewUrl(url?: string | null): boolean {
   return true;
 }
 
-export const BRIJAWASI_CONFIG = {
-  id: "brijawasi",
-  name: "Brijawasi Lucknow Special",
+export const BRAJWASI_CONFIG = {
+  id: "brajwasi",
+  name: "Brajwasi Lucknow Special",
   category: "Restaurant",
   tagline: "Authentic Taste. Royal Experience.",
   permanentSlug: "/",
-  alternateSlugs: ["/brijawasi", "/brijawasi-lucknow-special"],
+  alternateSlugs: ["/brajwasi", "/brijawasi", "/brijawasi-lucknow-special", "/review"],
   logoUrl: "/brijwasi-logo.jpg",
-  // Official verified Brijawasi Google Review Composer destination (opens direct 5-star rating composer)
+  // Official verified Brajwasi Google Review Composer destination (opens direct 5-star rating composer)
   googleReviewUrl:
+    process.env.NEXT_PUBLIC_BRAJWASI_GOOGLE_REVIEW_URL?.trim() ||
     process.env.NEXT_PUBLIC_BRIJAWASI_GOOGLE_REVIEW_URL?.trim() ||
     process.env.NEXT_PUBLIC_GOOGLE_REVIEW_URL?.trim() ||
     "https://search.google.com/local/writereview?placeid=ChIJEbF7jDb9YjkRfIojaE0GYYc",
   googleMapsUrl: "https://maps.app.goo.gl/VYXw86Ni7tEKEzxj8",
   googlePlaceId: "ChIJEbF7jDb9YjkRfIojaE0GYYc",
+  // Official Instagram link
+  instagramUrl: "https://www.instagram.com/brajwasilucknow?exln=eDgxMHZpamt0a2I5",
   // Brand color palette: Royal Maroon, Deep Burgundy, Antique Gold, Warm Cream, Ivory, Dark Brown
   brandColors: {
     royalMaroon: "#701C22",
     deepBurgundy: "#3B1118",
-    antiqueGold: "#C9A24C",
+    antiqueGold: "#C9A24A",
     warmCream: "#FFF3DB",
     ivory: "#FFF9EF",
     darkBrown: "#342019",
@@ -161,6 +164,11 @@ export const BRIJAWASI_CONFIG = {
   },
 };
 
-// Aliases for compatibility
-export const ALL_SERVICES = BRIJAWASI_SERVICES;
-export const BUSINESS_CONFIG = BRIJAWASI_CONFIG;
+export const BRAJWASI_SERVICES = BRIJAWASI_SERVICES;
+export const BRAJWASI_MENU_ITEMS = BRIJAWASI_MENU_ITEMS;
+export const BRAJWASI_EXPERIENCE_CATEGORIES = BRIJAWASI_EXPERIENCE_CATEGORIES;
+
+// Backwards compatibility aliases
+export const BRIJAWASI_CONFIG = BRAJWASI_CONFIG;
+export const ALL_SERVICES = BRAJWASI_SERVICES;
+export const BUSINESS_CONFIG = BRAJWASI_CONFIG;
